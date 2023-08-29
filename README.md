@@ -1,4 +1,4 @@
-# Example inference script of TensorRT(C++)
+# Example inference code of TensorRT(C++)
 
 This is example inference code of TensorRT.  
 I checked on the following environment.
