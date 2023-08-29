@@ -37,7 +37,7 @@ trtexec --verbose --profilingVerbosity=detailed --buildOnly --memPoolSize=worksp
 
 ## Inference
 
-I created `main.cpp` to infer using TensorRT Engine.
+I created `trt_infer.cpp` to infer using TensorRT Engine.
 
 ### include NvInfer.h
 
@@ -78,7 +78,7 @@ make
 ### ONNX Runtime(CPUExecutionProvider)
 
 ```shell
-$ python3 ort_infer.py 
+$ python3 ort_infer.py
 [[-0.00628578 -0.02112402 -0.00283293  0.01181907  0.02438403  0.00028906
   -0.03561208  0.02654092  0.0145703   0.00279154]]
 ```
@@ -86,7 +86,7 @@ $ python3 ort_infer.py
 ### TensorRT(without DLA)
 
 ```shell
-$ ./trt-infer-example-cpp 
+$ ./trt_infer
 [TRT] Loaded engine size: 6 MiB
 [TRT] Deserialization required 4967 microseconds.
 [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +5, now: CPU 0, GPU 5 (MiB)
@@ -100,7 +100,7 @@ $ ./trt-infer-example-cpp
 ### TensorRT(with DLA)
 
 ```shell
-$ ./trt-infer-example-cpp 
+$ ./trt_infer
 [TRT] Loaded engine size: 3 MiB
 [TRT] Deserialization required 2182 microseconds.
 [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +3, GPU +0, now: CPU 3, GPU 0 (MiB)
