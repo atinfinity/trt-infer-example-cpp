@@ -7,7 +7,7 @@ I checked on the following environment.
 - JetPack 5.1.2
 - TensorRT 8.5.2
 
-And, I used `onnxruntime` to compare result.
+And, I used `onnxruntime` to compare the result between ONNX Runtime and TensorRT.
 
 - onnxruntime-gpu 1.15.1
   - <https://elinux.org/Jetson_Zoo#ONNX_Runtime>
