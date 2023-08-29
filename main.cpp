@@ -37,13 +37,13 @@ int main(int argc, const char* argv[])
     // input and output data
     size_t input_elem_num = 1 * 3 * 32 * 32;
     size_t output_elem_num = 1 * 10;
-    std::vector<float> input(input_elem_num, 0.0f);
+    std::vector<float> input(input_elem_num, 1.0f);
     std::vector<float> output(output_elem_num, 0.0f);
 
     // allocate device memory
     float *d_input = nullptr;
     float *d_output = nullptr;
-    cudaMalloc(&d_input, output_elem_num * sizeof(float));
+    cudaMalloc(&d_input, input_elem_num * sizeof(float));
     cudaMalloc(&d_output, output_elem_num * sizeof(float));
 
     // copy HtoD
