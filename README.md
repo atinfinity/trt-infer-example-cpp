@@ -79,8 +79,8 @@ make
 
 ```shell
 $ python3 ort_infer.py 
-[[-0.00331396 -0.025011   -0.00538983  0.01257806  0.02580202  0.00101936
-  -0.02642873  0.02599718  0.01044547  0.00243419]]
+[[-0.00628578 -0.02112402 -0.00283293  0.01181907  0.02438403  0.00028906
+  -0.03561208  0.02654092  0.0145703   0.00279154]]
 ```
 
 ### TensorRT(without DLA)
@@ -88,13 +88,13 @@ $ python3 ort_infer.py
 ```shell
 $ ./trt-infer-example-cpp 
 [TRT] Loaded engine size: 6 MiB
-[TRT] Deserialization required 4773 microseconds.
+[TRT] Deserialization required 4967 microseconds.
 [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +5, now: CPU 0, GPU 5 (MiB)
 [TRT] Total per-runner device persistent memory is 0
 [TRT] Total per-runner host persistent memory is 19872
-[TRT] Allocated activation device memory of size 98816
+[TRT] Allocated activation device memory of size 131584
 [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +1, now: CPU 0, GPU 6 (MiB)
--0.00331459 -0.025011 -0.00539156 0.0125793 0.0258018 0.00101785 -0.0264283 0.0259966 0.0104437 0.00243466 
+-0.00628827 -0.0211218 -0.00284093 0.0118219 0.0243848 0.000285783 -0.0356103 0.0265424 0.014573 0.00278646
 ```
 
 ### TensorRT(with DLA)
@@ -102,13 +102,13 @@ $ ./trt-infer-example-cpp
 ```shell
 $ ./trt-infer-example-cpp 
 [TRT] Loaded engine size: 3 MiB
-[TRT] Deserialization required 2401 microseconds.
+[TRT] Deserialization required 2182 microseconds.
 [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +3, GPU +0, now: CPU 3, GPU 0 (MiB)
 [TRT] Total per-runner device persistent memory is 0
 [TRT] Total per-runner host persistent memory is 1472
-[TRT] Allocated activation device memory of size 10752
+[TRT] Allocated activation device memory of size 12800
 [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 3, GPU 0 (MiB)
--0.00331497 -0.0250092 -0.00539017 0.0125809 0.0257874 0.00102234 -0.0264282 0.026001 0.0104446 0.00243759 
+-0.00628281 -0.0211182 -0.00282669 0.0118103 0.0243835 0.000305653 -0.0355835 0.0265503 0.0145798 0.00279236
 ```
 
 ## Reference
