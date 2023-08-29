@@ -54,7 +54,7 @@ int main(int argc, const char* argv[])
     bool status = context->executeV2(bindings.data());
 
     // copy DtoH
-    cudaMemcpy(output.data(), (float*)d_output, (1 * 10) * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpy(output.data(), d_output, (1 * 10) * sizeof(float), cudaMemcpyDeviceToHost);
 
     // print output data
     for (auto const &i: output)
