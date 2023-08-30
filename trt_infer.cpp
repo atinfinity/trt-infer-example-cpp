@@ -50,7 +50,7 @@ int main(int argc, const char* argv[])
     cudaMallocAsync(&d_output, output_elem_num * sizeof(float), stream);
 
     // copy HtoD
-    cudaMemcpyAsync(d_input, input.data(), (1 * 3 * 32 * 32) * sizeof(float), cudaMemcpyHostToDevice, stream);
+    cudaMemcpyAsync(d_input, input.data(), input_elem_num * sizeof(float), cudaMemcpyHostToDevice, stream);
 
     // inference
     context->setTensorAddress("input", d_input);
@@ -60,7 +60,7 @@ int main(int argc, const char* argv[])
     cudaStreamSynchronize(stream);
 
     // copy DtoH
-    cudaMemcpyAsync(output.data(), d_output, (1 * 10) * sizeof(float), cudaMemcpyDeviceToHost, stream);
+    cudaMemcpyAsync(output.data(), d_output, output_elem_num * sizeof(float), cudaMemcpyDeviceToHost, stream);
 
     // print output data
     for (auto const &i: output)
