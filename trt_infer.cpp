@@ -40,21 +40,27 @@ int main(int argc, const char* argv[])
     std::vector<float> input(input_elem_num, 1.0f);
     std::vector<float> output(output_elem_num, 0.0f);
 
+    cudaStream_t stream;
+    cudaStreamCreate(&stream);
+
     // allocate device memory
     float *d_input = nullptr;
     float *d_output = nullptr;
-    cudaMalloc(&d_input, input_elem_num * sizeof(float));
-    cudaMalloc(&d_output, output_elem_num * sizeof(float));
+    cudaMallocAsync(&d_input, input_elem_num * sizeof(float), stream);
+    cudaMallocAsync(&d_output, output_elem_num * sizeof(float), stream);
 
     // copy HtoD
-    cudaMemcpy(d_input, input.data(), (1 * 3 * 32 * 32) * sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpyAsync(d_input, input.data(), (1 * 3 * 32 * 32) * sizeof(float), cudaMemcpyHostToDevice, stream);
 
     // inference
-    std::vector<void*> bindings = {d_input, d_output};
-    bool status = context->executeV2(bindings.data());
+    context->setTensorAddress("input", d_input);
+    context->setTensorAddress("output", d_output);
+    bool status = context->enqueueV3(stream);
+
+    cudaStreamSynchronize(stream);
 
     // copy DtoH
-    cudaMemcpy(output.data(), d_output, (1 * 10) * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpyAsync(output.data(), d_output, (1 * 10) * sizeof(float), cudaMemcpyDeviceToHost, stream);
 
     // print output data
     for (auto const &i: output)
@@ -66,6 +72,8 @@ int main(int argc, const char* argv[])
     // release device memory
     cudaFree(d_input);
     cudaFree(d_output);
+
+    cudaStreamDestroy(stream);
 
     return 0;
 }
