@@ -60,8 +60,9 @@ nvinfer1::IExecutionContext* context = engine->createExecutionContext();
 ### inference
 
 ```cpp
-std::vector<void*> bindings = {d_input, d_output};
-bool status = context->executeV2(bindings.data());
+context->setTensorAddress("input", d_input);
+context->setTensorAddress("output", d_output);
+bool status = context->enqueueV3(stream);
 ```
 
 ## Build
