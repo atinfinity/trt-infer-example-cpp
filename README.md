@@ -118,3 +118,5 @@ $ ./trt_infer
 - <https://docs.nvidia.com/deeplearning/tensorrt/api/c_api/index.html>
 - <https://github.com/dusty-nv/jetson-inference/blob/master/c/tensorNet.cpp>
 - <https://github.com/MrLaki5/TensorRT-onnx-dockerized-inference/blob/main/src/trt_engine.cpp>
+- <https://github.com/NVIDIA-AI-IOT/NVIDIA-Optical-Character-Detection-and-Recognition-Solution/blob/main/src/TRTEngine.cpp>
+- <https://github.com/cyrusbehr/tensorrt-cpp-api>
